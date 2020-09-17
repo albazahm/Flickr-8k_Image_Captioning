@@ -30,12 +30,13 @@ def create_model(image_embedding_size, vocab_size, maxlen):
     """
     #image branch
     image_input_layer = Input(shape=(image_embedding_size, ))
-    image_drop_layer = Dropout(0.5)(image_input_layer)
+    image_normalization_layer = BatchNormalization()(image_input_layer)
+    image_drop_layer = Dropout(0.5)(image_normalization_layer)
     image_dense_layer = Dense(128, activation='relu')(image_drop_layer)
     
     #text branch
     text_input_layer = Input(shape=(maxlen, ))
-    text_em_layer = Embedding(vocab_size, 256, mask_zero=True)(text_input_layer)
+    text_em_layer = Embedding(vocab_size, 128, mask_zero=True)(text_input_layer)
     text_dropout_layer = Dropout(0.5)(text_em_layer)
     text_lstm_layer = LSTM(128)(text_dropout_layer)
     
@@ -56,7 +57,7 @@ def create_model(image_embedding_size, vocab_size, maxlen):
     return model
 
 
-def generate(images, text, target, batch_size, vocab_size, seed=42):
+def generate(images, text, target, batch_size, vocab_size):
 
     """
     Function that yields batches of images, text and labels for training a model when
@@ -80,7 +81,6 @@ def generate(images, text, target, batch_size, vocab_size, seed=42):
         #zipping inputs and outputs together
         data = list(zip(images, text, target))
         #shuffling inputs and outputs together every epoch
-        random.seed(seed)
         random.shuffle(data)
         #initilizing count for number of observations in a batch
         batch_count = 0
@@ -112,7 +112,7 @@ def generate(images, text, target, batch_size, vocab_size, seed=42):
 
 if __name__ == '__main__':
 
-    BATCH_SIZE = 64
+    BATCH_SIZE = 128
     EPOCHS = 10
 
     #load image features
