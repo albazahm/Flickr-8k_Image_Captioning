@@ -16,7 +16,7 @@ Citation:
 
 Examples from the dataset:
 
-!['Examples From Dataset'](./README_fig1.png)
+!['Examples From Dataset'](./README_figures/README_fig1.png)
 
 ---
 
@@ -67,7 +67,7 @@ Examples from the dataset:
 
     The outputs from each of the streams above is of the same shape. They get added before being passed into another ReLu activated Dense Layer and finally the SoftMax activated output layer to produced the label.
 
-    [View Model Summary](./README.fig2.png)
+    [View Model Summary](./README_figures/README.fig2.png)
 
 4. **Generator** ([code](./deep_learning_model.py))
 
