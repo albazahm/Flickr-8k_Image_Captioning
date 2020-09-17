@@ -54,9 +54,9 @@ def add_start_end_tokens(row, start_token='*start*', end_token='*end*'):
     ----------
     row: Pandas DataFrame row
         Intended to use with the pandas.DataFrame.apply function on each row of dataframe
-    start_token: string
+    start_token: string, default = '*start*'
         Token to be added that indicates the start of the caption sequence
-    end_token: string
+    end_token: string, default = '*end*'
         Token to be added that indicates the end of the caption sequence
     
     Returns
