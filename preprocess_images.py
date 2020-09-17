@@ -15,7 +15,7 @@ def load_preprocess_images(directory='flickr-8k/Images'):
 
     Parameters
     ----------
-    directory: string
+    directory: string, default = 'flickr-8k/Images'
         The directory where the Flikr-8k images dataset is stored
     
     Returns
